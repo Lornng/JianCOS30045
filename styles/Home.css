@@ -1,0 +1,8 @@
+.country{
+    fill: #e90000;
+    stroke: #a52d2d;
+    stroke-width: 2.0;
+}
+.selected{
+    fill: yellow;
+}
