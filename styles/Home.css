@@ -5,8 +5,17 @@
 .country{
     fill: green;
     stroke: black;
-    stroke-width: 2.0;
+    stroke-width: 0.05px;
 }
 .country:hover{
     fill: yellow;
 }
+/* #tooltip{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 2em;
+} */
