@@ -1,21 +1,29 @@
-#world_map {
+svg {
     overflow: hidden;
     background-color: darkblue;
 }
 .country{
-    fill: green;
     stroke: black;
     stroke-width: 0.05px;
 }
 .country:hover{
-    fill: yellow;
+    fill: purple;
 }
-/* #tooltip{
+#reset {
     position: absolute;
     top: 10px;
-    left: 10px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
-    font-size: 2em;
-} */
+    right: 10px;
+    z-index: 1;
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+  
+#reset:hover {
+background-color: black;
+color: white;
+}
