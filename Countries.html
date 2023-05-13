@@ -19,4 +19,56 @@
         <a href="Reasons.html">Reasons</a>
     </nav>
     <h1>Countries Page</h1>
+    
+    <script>
+  //  margin, width and height
+  var margin = { top: 20, right: 20, bottom: 50, left: 60 };
+  var width = 960 - margin.left - margin.right;
+  var height = 480 - margin.top - margin.bottom;
+
+  // Load data from ASIA.csv 
+  d3.csv("ASIA.csv").then(function(data) {
+    var dataset = data;
+
+    // Define X Scale
+    var xScale = d3.scaleBand()
+      .domain(dataset.map(function(d) { return d.Countries; }))
+      .range([0, width])
+      .padding(0.1);
+// Define Y Scale
+    var yScale = d3.scaleLinear()
+      .domain([0, d3.max(dataset, function(d) { return +d.Numbers; })])
+      .range([height, 0]);
+
+    // Create an SVG element and set its attributes
+    var svg = d3.select("body")
+      .append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    // Draw the bars
+    svg.selectAll("rect")
+      .data(dataset)
+      .enter()
+      .append("rect")
+      .attr("x", function(d) { return xScale(d.Countries); })
+      .attr("y", function(d) { return yScale(+d.Numbers); })
+      .attr("width", xScale.bandwidth())
+      .attr("height", function(d) { return height - yScale(+d.Numbers); })
+      .attr("fill", "steelblue");
+
+    // Add x-axis to the chart
+    var xAxis = d3.axisBottom(xScale);
+    svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+    // Add y-axis to the chart
+    var yAxis = d3.axisLeft(yScale);
+    svg.append("g")
+      .call(yAxis);
+  });
+</script>
 </body>
