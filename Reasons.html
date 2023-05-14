@@ -12,6 +12,11 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
+  <nav>
+    <a href="Home.html">Home</a>
+    <a href="Countries.html">Countries</a>
+    <a href="Reasons.html">Reasons</a>
+  </nav>
     <h1>Migration Line Chart in India</h1>
     <p id = "chart"></p>
 <script>
@@ -21,7 +26,7 @@ var h = 600;
 var padding = 100;
 var dataset;
     // Load data from CSV file and parse it
-    d3.csv("India.csv", function(d) {
+    d3.csv("sources/India.csv", function(d) {
       return {
         year: new Date (+d.year),
         AnnualP: +d.AnnualP
