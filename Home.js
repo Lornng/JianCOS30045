@@ -5,7 +5,7 @@ function init(){
     var h = 600;
 
     var projection = d3.geoMercator()
-    .translate([w/2, h/1.4]);
+                        .translate([w/2, h/1.4]);
 
     var path = d3.geoPath()
                     .projection(projection);
@@ -103,23 +103,32 @@ function init(){
                 svg.append('text')
                     .attr('id', 'tooltip_country')
                     .attr('x', 10)
-                    .attr('y', 30)
+                    .attr('y', 25)
                     .attr('fill', 'white')
-                    .style('font-size', '20px')
+                    .style('font-size', '15px')
                     .text("Country Name: " + d.properties.name );
 
                 svg.append('text')
                     .attr("id", "tooltip_continent")
                     .attr('x', 10)
-                    .attr('y', 50)
+                    .attr('y', 45)
                     .attr('fill', 'white')
-                    .style('font-size', '20px')
+                    .style('font-size', '15px')
                     .text("Continent: " + colorValue(d));
+                
+                    svg.append('text')
+                    .attr("id", "tooltip_pop")
+                    .attr('x', 10)
+                    .attr('y', 65)
+                    .attr('fill', 'white')
+                    .style('font-size', '15px')
+                    .text("Population: " + d.properties.pop_est);
             })
             .on("mouseout", function() {
                 //Reset the text element to an empty string
                 svg.select('#tooltip_country').remove();
                 svg.select('#tooltip_continent').remove();
+                svg.select('#tooltip_pop').remove();
             });
 
         console.log(colorScale.domain());
