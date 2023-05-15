@@ -9,6 +9,8 @@
     <div>
         <button id="button2020">2020</button>
         <button id="button2015">2015</button>
+        <button id="button2010">2010</button>
+
     </div>
     <svg></svg>
     <script src="https://d3js.org/d3.v5.min.js"></script>
@@ -73,6 +75,12 @@
                 activeColumn = "2015";
                 updateChart();
             });
+            
+            d3.select("#button2010").on("click", function() {
+                activeColumn = "2010";
+                updateChart();
+            });
+            
 
             // Function to update the chart based on the active column
             function updateChart() {
