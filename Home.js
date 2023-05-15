@@ -5,7 +5,7 @@ function init(){
     var h = 600;
 
     var projection = d3.geoMercator()
-                        .translate([w/2, h/1.4]);
+                    .translate([w/2, h/1.4]);
 
     var path = d3.geoPath()
                     .projection(projection);
@@ -18,7 +18,7 @@ function init(){
     var colorScale = d3.scaleOrdinal();
 
     var colorValue = function(d){
-        return d.properties.region_un;
+        return d.properties.economy;
     };
 
     //Include <g> element in SVG
@@ -61,11 +61,13 @@ function init(){
 
     //Load TSV and JSON data concurrenntly using Promise.all()
     Promise.all([
-        d3.tsv("https://unpkg.com/world-atlas@1.1.4/world/50m.tsv"),
-        d3.json("https://unpkg.com/world-atlas@1.1.4/world/50m.json")
+        d3.tsv("sources/50m.tsv"),
+        d3.json("https://unpkg.com/world-atlas@1.1.4/world/50m.json"),
+        d3.csv("sources/population_by_country_2020.csv")
     ]).then(function (results){
         var tsvData = results[0];
         var topoData = results[1];
+        var popData = results[2];
 
         //convert TopoJSON to GeoJSON
         var countries = topojson.feature(topoData, topoData.objects.countries);
@@ -77,9 +79,17 @@ function init(){
             return obj;
           }, {});
         
+        var popDataByCountry = {}
+
+        popData.forEach(function(d){
+            popDataByCountry[d.Country] = d["Migrants(net)"];
+        });
+
+        //merge the three datasets together
         countries.features.forEach(function(d){
             //d.properties will contain all of the properties fron each row of the tsv table
-            return Object.assign(d.properties, countryInfoByID[d.id]);
+            Object.assign(d.properties, countryInfoByID[d.id]);
+            d.properties.migrantsNet = popDataByCountry[d.properties.name];
         })
 
         colorScale.domain(countries.features.map(colorValue))
@@ -114,24 +124,41 @@ function init(){
                     .attr('y', 45)
                     .attr('fill', 'white')
                     .style('font-size', '15px')
-                    .text("Continent: " + colorValue(d));
+                    .text("Continent: " + d.properties.region_un);
                 
-                    svg.append('text')
+                svg.append('text')
                     .attr("id", "tooltip_pop")
                     .attr('x', 10)
                     .attr('y', 65)
                     .attr('fill', 'white')
                     .style('font-size', '15px')
                     .text("Population: " + d.properties.pop_est);
+
+                svg.append('text')
+                    .attr("id", "tooltip_migration")
+                    .attr('x', 10)
+                    .attr('y', 85)
+                    .attr('fill', function() {
+                        return d.properties.migrantsNet < 0 ? 'red' : 'white';
+                    })
+                    .style('font-size', '15px')
+                    .text(function() {
+                        if (d.properties.migrantsNet === '') {
+                            return 'Migration: No Data';
+                        } else {
+                            return 'Migration: ' + d.properties.migrantsNet;
+                        }
+                    });
             })
             .on("mouseout", function() {
                 //Reset the text element to an empty string
                 svg.select('#tooltip_country').remove();
                 svg.select('#tooltip_continent').remove();
                 svg.select('#tooltip_pop').remove();
+                svg.select('#tooltip_migration').remove();
             });
 
-        console.log(colorScale.domain());
+
 
         //Create legend 
         //group element for legend
@@ -144,23 +171,23 @@ function init(){
                 category: d, color: colorScale(d)
             };
         })
-
-        
+        console.log(legendData.length);
+    
         // Add background to legend
         legend.append("rect")
                 .attr("x", -5)
                 .attr("y", -5)
                 .attr("rx", 5)
-                .attr("width", 220)
+                .attr("width", 240)
                 .attr("height", legendData.length * 25 + 10)
                 .attr("fill", "white")
                 .attr("opacity", 0.5);
 
-        var legendBoxes = legend.selectAll("rect")
+        var legendBoxes = legend.selectAll(".legent-boxes")
                                 .data(legendData)
                                 .enter()
                                 .append("rect")
-                                
+                                .attr("class", "legend-boxes")
                                 .attr("x", 0)
                                 .attr("y", function(d,i){
                                     return i*25;
