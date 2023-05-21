@@ -3,15 +3,19 @@
 <head>
     <meta charset="utf-8">
     <title>ASIA.csv Bar Chart</title>
+	<link rel="stylesheet" href="styles/page2.css">
+
 </head>
 <body>
+	<header>
     <nav>
         <a href="Home.html">Home</a>
         <a href="Countries.html">Countries</a>
         <a href="Reasons.html">Reasons</a>
     </nav>
-   
-	    <h1>Top 10 Bar Chart</h1>
+   </header>
+	<main>
+	    <h1>Top 10 Asian Countries with the highest immigration (Origin)</h1>
 	<p> 
 		Based on the provided bar chart, India consistently holds the highest position in terms of immigration origin over a ten-year span, with a significant increase in immigration by 35.14% during this period.
 	</p>
@@ -19,12 +23,10 @@
 		In contrast, the other countries exhibited relatively smaller growth rates, indicating that India's immigration patterns have surpassed other countries in Asia.
 	</p>
 
-	<div>
-        <button id="button2020">2020</button>
-        <button id="button2015">2015</button>
-        <button id="button2010">2010</button>
-    </div>
+	
     <svg></svg>
+	</main>
+		
     <script src="https://d3js.org/d3.v5.min.js"></script>
    <script>
     // Margin, width, and height
@@ -155,7 +157,11 @@ d3.csv("sources/ASIA.csv").then(function(data) {
 
 
 </script>
-
+<div class="btn-container">
+        <button id="button2020">2020</button>
+        <button id="button2015">2015</button>
+        <button id="button2010">2010</button>
+    </div>
 </body>
 	<footer>
   <p>COS30045-DATA VISUALISATION </p>
