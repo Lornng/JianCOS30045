@@ -17,7 +17,7 @@
         <a href="Countries.html">Countries</a>
         <a href="Reasons.html">Reasons</a>
       </nav>
-    <h1>GDP Line Chart in India</h1>
+    <h1>3Reasons for Indian to migrate</h1>
     <p id = "chart"></p>
 <script>
              
@@ -29,7 +29,9 @@ var dataset;
     d3.csv("GDP.csv", function(d) {
         return {
         date: (+d.date),
-        GdpG: +d.GdpG
+        GdpG: (+d.GdpG),
+        UnemploymentR: (+d.UnemploymentR),
+        SchoolEnrollmentR: (+d.SchoolEnrollmentR)
       };
     }).then(function(data) {
       dataset = data;
@@ -48,12 +50,16 @@ var dataset;
       // Set the line generator function
       var line = d3.line()
         .x(function(d) { return xScale(d.date); })
-        .y(function(d) { return yScale(d.GdpG); });
+        .y(function(d) { return yScale(d.GdpG); })
+        .y(function(d) { return yScale(d.UnemploymentR); })
+        .y(function(d) { return yScale(d.SchoolEnrollmentR); });
       // Add the area shape to the chart
       var area = d3.area()
         .x(function(d) { return xScale(d.date); })
         .y0(function() { return yScale.range()[0]; })
-        .y1(function(d) { return yScale(d.GdpG); });
+        .y1(function(d) { return yScale(d.GdpG); })
+        .y2(function(d) { return yScale(d.UnemploymentR); })
+        .y3(function(d) { return yScale(d.SchoolEnrollmentR); });
       // Create the SVG element
       var svg = d3.select("#chart")
         .append("svg")
