@@ -12,7 +12,8 @@
     <!-- because the data was formatted as TopoJSON, to render the utilities in GeoJSON, need to convert TopoJSOn to GeoJSON and memory using the library -->
     <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
     <script src ="Home.js"></script>
-    <link href = "styles/Home.css" rel="stylesheet" />
+    <link href = "styles/Home.css" rel="stylesheet"/>
+    <link href = "styles/style.css" rel="stylesheet"/>
 
 </head>
 <body>
@@ -21,24 +22,65 @@
         <a href="Countries.html">Countries</a>
         <a href="Reasons.html">Reasons</a>
     </nav>
-    <h1>Home Page</h1>
-    <div id = "world_map">
-        <div id = "tooltip"></div>
+    <div class="parallax bodytop">
+        <h1>WELCOME To The Immigration Page</h1>
+        <p>This website will discuss and show about the immigration data of the year 2020 by displaying a world map. <br>Further investigation and Visualisation analysis will be shown in details.</p>
+        <h3>Team Name: Migration_2020</h3>
+        <h3>Members: Jian Jia Ng, Irene Kim , Yagiz</h3>
     </div>
     
-    <h2>Team Name: Migration_2020</h2>
-    <h2>Team Members: Jian Jia Ng, Irene Kim , Yagiz</h2>
+    <div class="bodycore1">
+        <h2>Immigration Issues and Research (2020)</h2>
+        <p>Why 2020 was the selected year of investigation? First, because most of the big data was collected in a regular pattern of 5 years or a decade as it takes time for data mining, cleaning and validatiing. Although every country will record it's population and migration annually. However, it is not easy to collect a world data that include a significant amount of accurate and valuable data. From other prespective, the year 2020 was severely effected by the world pandemic. This would be intresting to investigate how it affects the migration as well. Therefore, the year 2020 was selected.</p>
+        <p>The interactive world map is shown below for the Visualisation purpose. Information such as <strong>country name, continent, population, developoment status</strong> and <strong>migration</strong> can be found at the map below.</p>
+    </div>
+    
+    <h2 class="parallax">The World Map</h2>
+
+    <div id = "world_map">
+        <div class="unorderedList">
+            <h2>Features</h2>
+            <ul>
+                <li>Zoom the map</li>
+                <li>Mouse over the country piece for details</li>
+                <li>Reset Button, reset all zooming action done</li>
+                <li>Legend Box, defined the color layout for different countries</li>
+            </ul>
+        <br>
+        <br>
+        <p>Further analysis of <a href="Countries.html" style="color:red">Asia migration data</a></p>
+        <p>In-depth <a href="Reasons.html" style="color:red">reasoning</a> analysis of top migration outflow country</p>
+        </div>
+    </div>
+
+    <div id="benefits" class = "parallax unorderedList">
+        <h2>Benefits</h2>
+        <ul>
+            <li>Clear and easy to understand</li>
+            <li>Precise information provided</li>
+            <ul>
+                <li>Geographical Location</li>
+                <li>Number of pupulation</li>
+                <li>Number of migration</li>
+                <ul>
+                    <li>White color text - Inflow</li>
+                    <li>Red color text - Outflow</li>
+                </ul>
+                <li>Development status of each country</li>
+            </ul>
+        </ul>
+    </div>
+    
 </body>
 
 <footer>
-    <hr> 
-    <span style="text-align: left;">
-        COS30045 Data Visualisation <br>&#169<a href="https://www.swinburne.edu.au">Swinburne University of Technology</a>
-    </span>
-    <span style="float:right">
-        Done by:
-        <a href="mailto:103840759@student.swin.edu.au">
-            Jian Jia Ng
-        </a>
-    </span>
+    <div class="footer">
+        <hr> 
+        <span style="text-align: left;">
+            COS30045 Data Visualisation <br>&#169<a href="https://www.swinburne.edu.au">Swinburne University of Technology</a>
+        </span>
+        <span style="float:right">
+            Done by:<a href="mailto:103840759@student.swin.edu.au">Jian Jia Ng</a>
+        </span>
+    </div>
 </footer>

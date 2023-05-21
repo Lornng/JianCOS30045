@@ -158,8 +158,6 @@ function init(){
                 svg.select('#tooltip_migration').remove();
             });
 
-
-
         //Create legend 
         //group element for legend
         var legend = svg.append("g")
