@@ -7,7 +7,7 @@
 	<meta name="keywords"		  content="HTML, CSS"/>
 	<meta name="author"			  content="Ahyoon Kim"/>
 
-    <title>Task 7.1 Line and Area chart</title>
+    <title>Reason of India Migration</title>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
@@ -17,19 +17,19 @@
         <a href="Countries.html">Countries</a>
         <a href="Reasons.html">Reasons</a>
       </nav>
-    <h1>Migration Line Chart in India</h1>
+    <h1>GDP Line Chart in India</h1>
     <p id = "chart"></p>
 <script>
              
-var w = 600;
+var w = 900;
 var h = 600;
 var padding = 100;
 var dataset;
     // Load data from CSV file and parse it
-    d3.csv("India.csv", function(d) {
+    d3.csv("GDP.csv", function(d) {
         return {
         date: (+d.date),
-        AnnualP: +d.AnnualP
+        GdpG: +d.GdpG
       };
     }).then(function(data) {
       dataset = data;
@@ -42,18 +42,18 @@ var dataset;
         ])
         .range([padding, w - padding]);
         var yScale = d3.scaleLinear()
-        .domain([0, d3.max(dataset, function(d) { return d.AnnualP; })])
+        .domain([0, d3.max(dataset, function(d) { return d.GdpG; })])
         .range([h - padding, padding ]);
       
       // Set the line generator function
       var line = d3.line()
         .x(function(d) { return xScale(d.date); })
-        .y(function(d) { return yScale(d.AnnualP); });
+        .y(function(d) { return yScale(d.GdpG); });
       // Add the area shape to the chart
       var area = d3.area()
         .x(function(d) { return xScale(d.date); })
         .y0(function() { return yScale.range()[0]; })
-        .y1(function(d) { return yScale(d.AnnualP); });
+        .y1(function(d) { return yScale(d.GdpG); });
       // Create the SVG element
       var svg = d3.select("#chart")
         .append("svg")
@@ -73,17 +73,31 @@ var dataset;
         .attr("d", line);
       // Add the x-axis and y-Axis to the chart
       var xAxis = d3.axisBottom(xScale)
-      .ticks(5);
-      svg.append("g")
-        .attr("class", "axis x-axis")
-        .attr("transform", "translate(0," + (h - padding) + ")")
-        .call(xAxis);
+                    .ticks(5);
+        svg.append("g")
+            .attr("class", "axis x-axis")
+            .attr("transform", "translate(0," + (h - padding) + ")")
+            .call(xAxis);
   
       var yAxis = d3.axisLeft(yScale);
-      svg.append("g")
-        .attr("class", "axis y-axis")
-        .attr("transform", "translate(" + padding + ",0)")
-        .call(yAxis);
+        svg.append("g")
+            .attr("class", "axis y-axis")
+            .attr("transform", "translate(" + padding + ",0)")
+            .call(yAxis);
+
+        svg
+            .append("rect")
+            .attr("width", width)
+            .attr("height", height)
+            .style("fill", "none")
+            .style("pointer-events", "all")
+            .on("mouseover", () => {
+            focus.style("display", null);
+            })
+            .on("mouseout", () => {
+            focus.style("display", "none");
+            })
+            .on("touchmove mousemove", mouseMove);
   
     });
 </script>
