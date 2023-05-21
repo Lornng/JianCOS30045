@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ASIA.csv Bar Chart</title>
+	<link rel="stylesheet" href="styles/page2.css">
+
+</head>
+<body>
+	<header>
+    <nav>
+        <a href="Home.html">Home</a>
+        <a href="Countries.html">Countries</a>
+        <a href="Reasons.html">Reasons</a>
+    </nav>
+   </header>
+	<main>
+	    <h1>Top 10 Bar Chart</h1>
+	<p> 
+		Based on the provided bar chart, India consistently holds the highest position in terms of immigration origin over a ten-year span, with a significant increase in immigration by 35.14% during this period.
+	</p>
+	<p>
+		In contrast, the other countries exhibited relatively smaller growth rates, indicating that India's immigration patterns have surpassed other countries in Asia.
+	</p>
+
+	
+    <svg></svg>
+	</main>
+		
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+   <script>
+    // Margin, width, and height
+var margin = { top: 20, right: 20, bottom: 50, left: 60 };
+var width = 960 - margin.left - margin.right;
+var height = 480 - margin.top - margin.bottom;
+
+// Load data from ASIA.csv
+d3.csv("sources/ASIA.csv").then(function(data) {
+    var dataset = data;
+    var activeColumn = "2020"; // Initially set to "2020"
+
+    // Define X Scale
+    var xScale = d3.scaleBand()
+        .domain(dataset.map(function(d) { return d.Countries; }))
+        .range([0, width])
+        .padding(0.1);
+
+    // Define Y Scale
+    var yScale = d3.scaleLinear()
+        .domain([0, d3.max(dataset, function(d) { return +d["2020"]; })])
+        .range([height, 0])
+        .nice();
+
+    // Create an SVG element and set its attributes
+    var svg = d3.select("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+ 
+    // Draw the bars
+    var bars = svg.selectAll("rect")
+        .data(dataset)
+        .enter()
+        .append("rect")
+        .attr("x", function(d) { return xScale(d.Countries); })
+        .attr("y", function(d) { return yScale(+d[activeColumn]); })
+        .attr("width", xScale.bandwidth())
+        .attr("height", function(d) { return height - yScale(+d[activeColumn]); })
+        .attr("fill", "orange");
+
+    // Add text labels to the bars
+    var labels = svg.selectAll(".bar-label")
+        .data(dataset)
+        .enter()
+        .append("text")
+        .attr("class", "bar-label")
+        .attr("x", function(d) { return xScale(d.Countries) + xScale.bandwidth() / 2; })
+        .attr("y", function(d) { return yScale(+d[activeColumn]) - 5; })
+        .attr("text-anchor", "middle")
+        .text(function(d) { return d[activeColumn]; });
+
+    // Add x-axis to the chart
+    var xAxis = d3.axisBottom(xScale);
+    svg.append("g")
+        .attr("class", "x-axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+    // Add y-axis to the chart
+    var yAxis = d3.axisLeft(yScale);
+    svg.append("g")
+        .call(yAxis);
+	
+	// Gridlines
+   svg.insert("g", ":first-child")
+    .attr("class", "grid")
+    .call(d3.axisLeft(yScale)
+        .tickSize(-width)
+        .tickFormat("")) // Remove labels
+	
+    .selectAll(".tick line")
+    .style("stroke-width", "1px")   // Adjust the stroke 
+    .style("opacity", "0.3");   // Adjust the opacity 
+
+    // Button event listeners
+    d3.select("#button2020").on("click", function() {
+        activeColumn = "2020";
+        updateChart();
+    });
+
+    d3.select("#button2015").on("click", function() {
+        activeColumn = "2015";
+        updateChart();
+    });
+
+    d3.select("#button2010").on("click", function() {
+        activeColumn = "2010";
+        updateChart();
+    });
+
+    // Function to update the chart based on the active column
+    function updateChart() {
+        // Sort the dataset in descending order based on the active column
+        dataset.sort(function(a, b) {
+            return +b[activeColumn] - +a[activeColumn];
+        });
+
+        var max2020 = d3.max(dataset, function(d) { return +d["2020"]; }); 
+        var maxActive = d3.max(dataset, function(d) { return +d[activeColumn]; });
+        var maxYValue = Math.max(max2020, maxActive); //max value for setting the correct y axis
+
+        yScale.domain([0, maxYValue]).nice();
+
+        // Update the X-axis scale and reposition the X-axis
+        xScale.domain(dataset.map(function(d) { return d.Countries; }));
+
+        svg.select(".x-axis")
+            .transition()
+            .duration(500)
+            .call(xAxis);
+
+        bars.transition()
+            .duration(500)
+            .attr("x", function(d) { return xScale(d.Countries); })
+            .attr("y", function(d) { return yScale(+d[activeColumn]); })
+            .attr("height", function(d) { return height - yScale(+d[activeColumn]); });
+
+        labels.transition()
+            .duration(500)
+            .attr("x", function(d) { return xScale(d.Countries) + xScale.bandwidth() / 2; })
+            .attr("y", function(d) { return yScale(+d[activeColumn]) - 5; })
+            .text(function(d) { return d[activeColumn]; });
+    }
+});
+
+
+</script>
+<div class="btn-container">
+        <button id="button2020">2020</button>
+        <button id="button2015">2015</button>
+        <button id="button2010">2010</button>
+    </div>
+</body>
+	<footer>
+  <p>COS30045-DATA VISUALISATION </p>
+</footer>
+
+</html>
