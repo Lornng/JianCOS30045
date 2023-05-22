@@ -32,8 +32,8 @@ var dataset;
         return {
         date: (+d.date),
         GdpG: (+d.GdpG),
-        //UnemploymentR: (+d.UnemploymentR),
-        //SchoolEnrollmentR: (+d.SchoolEnrollmentR)
+        UnemploymentR: (+d.UnemploymentR),
+        SchoolEnrollmentR: (+d.SchoolEnrollmentR)
       };
     }).then(function(data) {
       dataset = data;
@@ -52,16 +52,16 @@ var dataset;
       // Set the line generator function
       var line = d3.line()
         .x(function(d) { return xScale(d.date); })
-        .y(function(d) { return yScale(d.GdpG); });
-        //.y(function(d) { return yScale(d.UnemploymentR); })
-        //.y(function(d) { return yScale(d.SchoolEnrollmentR); });
+        .y(function(d) { return yScale(d.GdpG); })
+        .y(function(d) { return yScale(d.UnemploymentR); })
+        .y(function(d) { return yScale(d.SchoolEnrollmentR); });
       // Add the area shape to the chart
       var area = d3.area()
         .x(function(d) { return xScale(d.date); })
         .y0(function() { return yScale.range()[0]; })
         .y1(function(d) { return yScale(d.GdpG); })
-        //.y2(function(d) { return yScale(d.UnemploymentR); })
-        //.y3(function(d) { return yScale(d.SchoolEnrollmentR); });
+        .y2(function(d) { return yScale(d.UnemploymentR); })
+        .y3(function(d) { return yScale(d.SchoolEnrollmentR); });
       // Create the SVG element
       var svg = d3.select("#chart")
         .append("svg")
@@ -109,8 +109,5 @@ var dataset;
   
     });
 </script>
-
-<footer style="color:slategrey;"><br>COS30045 Data Visualisation<br>
-        Ahyoon Kim</footer> 
         </body>
     </html>
