@@ -96,6 +96,7 @@ h2.parallax {
 
 /*World Map*/
 #world_map {
+    font-size: 0.8em;
     display: flex;
     background-color: #282e34;    
     margin: 0;
