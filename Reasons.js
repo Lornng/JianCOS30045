@@ -6,7 +6,7 @@ function init(){
   var dataset;
 
   // Load data from CSV file and parse it
-  d3.csv("GDP.csv", function(d) {
+  d3.csv("sources/GDP.csv", function(d) {
     return {
       date: +d.date,
       GdpG: +d.GdpG,
@@ -170,7 +170,7 @@ svg.append('g')
   .attr("class", "point-gdpg")
   .attr("cx", function(d) { return xScale(d.date); })
   .attr("cy", function(d) { return yScale(d.GdpG); })
-  .attr("r", 2)
+  .attr("r", 3)
   .on("mouseover", showTooltipGdpG)
   .on("mousemove", moveTooltip )
     .on("mouseleave", hideTooltip );
@@ -184,7 +184,7 @@ svg.append('g')
   .attr("class", "point-unemployment")
   .attr("cx", function(d) { return xScale(d.date); })
   .attr("cy", function(d) { return yScale(d.UnemploymentR); })
-  .attr("r", 2)
+  .attr("r", 3)
   .on("mouseover", showTooltipUnemploymentR)
   .on("mousemove", moveTooltip )
     .on("mouseleave", hideTooltip );
@@ -198,7 +198,7 @@ svg.append('g')
   .attr("class", "point-enrollment")
   .attr("cx", function(d) { return xScale(d.date); })
   .attr("cy", function(d) { return yScale(d.SchoolEnrollmentR); })
-  .attr("r", 2)
+  .attr("r", 3)
   .on("mouseover", showTooltipSchoolEnrollmentR)
   .on("mousemove", moveTooltip )
     .on("mouseleave", hideTooltip );
@@ -211,5 +211,5 @@ svg.append('g')
   .text("Date");
 
     });
-    
+  }
     window.onload = init;
