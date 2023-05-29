@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ASIA.csv Bar Chart</title>
+    <link href="styles/style.css" rel="stylesheet"/>
+</head>
+<body>
+    <nav>
+        <a href="Home.html">Home</a>
+        <a href="Countries.html">Countries</a>
+        <a href="Reasons.html">Reasons</a>
+    </nav>
+    <div class="parallax bodytop">
+        <h1>Top 10 Asian Countries with the highest immigration (Origin)</h1>
+    </div>
+    <div class="bodycore1">
+		<h2> Immigration Research</h2>
+        <p>Based on the provided bar chart, India consistently holds the highest position in terms of immigration origin over a ten-year span, with a significant increase in immigration by 35.14% during this period.</p>
+        <p>In contrast, the other countries exhibited relatively smaller growth rates, indicating that India's immigration patterns have surpassed other countries in Asia.</p>
+    </div>
+    <h2 class="parallax">Immigration Barchart</h2>
+    
+
+<div class="barchart">
+  <div class="barchart-left">
+	  <div class="unorderedList">
+            <h2>Chart Information</h2>
+            <ul>
+                <li>The chart features switchable years through 3 buttons where the chart bars redraw it self to match the country name</li>
+                <li>The X-Axis indicates the countries</li>
+                <li>The Y Axis indicates the immigration numbers</li>
+                <li>Mouseover effects of the bars</li>
+            </ul>
+        <br>
+        <br>
+        </div>
+  </div>
+
+  <div class="barchart-right">
+    
+    <div class="btn-container">
+      <div class="btn btn-three" id="button2020">
+        <span class="button">2020</span>
+      </div>
+      <div class="btn btn-three" id="button2015">
+        <span class="button">2015</span>
+      </div>
+      <div class="btn btn-three" id="button2010">
+        <span class="button">2010</span>
+      </div>
+    </div>
+	  <div class="chart-container">
+      <svg></svg>
+    </div>
+  </div>
+</div>
+
+<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="countries.js"></script>
+	
+
+
+
+<footer>
+    <div class="footer">
+      <hr> 
+        <span style="text-align: left;">
+            COS30045 Data Visualisation <br>&#169<a href="https://www.swinburne.edu.au">Swinburne University of Technology</a>
+        </span>
+        <span style="float:right">
+            Yagiz Kapuska
+        </span>
+    </div>
+</footer>
+</body>
+</html>
