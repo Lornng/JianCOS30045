@@ -196,6 +196,117 @@ h2.parallax {
 
 /* --------------------------Countries Page------------------------------ */
 
+svg {
+  
+}
+
+.barchart {
+  font-size: 0.8em;
+  display: flex;
+  flex: 1;
+  background-color: #282e34;
+  margin: 0;
+  padding-right: 3.5%;
+  padding-bottom: 60px;
+  padding-top: 60px;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.barchart-left {
+  flex: 0 0 40%;
+  display: flex;
+  align-items: center;
+}
+
+.barchart-right {
+  flex: 0 0 60%;  
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.chartinfo {
+  width: 50%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  display: flex;
+  flex-direction: column;  
+  justify-content: flex-start;
+  align-items: center;
+  color: white;
+  text-align: left;
+  padding: 10px;
+  font-weight: bold;
+}
+
+
+.btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center; 
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 30px;
+}
+
+.btn {
+  line-height: 30px;
+  height: 30px;
+  text-align: center;
+  width: 150px; 
+  cursor: pointer;
+  z-index: 1;
+  margin-bottom: 5px; 
+}
+
+.btn-three {
+  color: #FFF;
+  transition: all 0.5s;
+  position: relative;
+}
+
+.btn-three::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: rgba(255,255,255,0.1);
+  transition: all 0.3s;
+}
+
+.btn-three:hover::before {
+  opacity: 0 ;
+  transform: scale(0.5,0.5);
+}
+
+.btn-three::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0;
+  transition: all 0.3s;
+  border: 1px solid rgba(255,255,255,0.5);
+  transform: scale(1.2,1.2);
+}
+
+.btn-three:hover::after {
+  opacity: 1;
+  transform: scale(1,1);
+}
 
 
 
