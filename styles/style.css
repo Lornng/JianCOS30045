@@ -196,43 +196,39 @@ h2.parallax {
 
 /* --------------------------Countries Page------------------------------ */
 
-svg {
-  
-}
-
 .barchart {
   font-size: 0.8em;
   display: flex;
-  flex: 1;
+  flex-direction: column;
   background-color: #282e34;
   margin: 0;
-  padding-right: 3.5%;
-  padding-bottom: 60px;
-  padding-top: 60px;
+  padding: 60px 3.5%;
   box-sizing: border-box;
   height: 100%;
+  justify-content: center; 
+  align-items: center; 
 }
 
-.barchart-left {
-  flex: 0 0 40%;
+.barchart-top {
   display: flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
-.barchart-right {
-  flex: 0 0 60%;  
+.barchart-bottom {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
+  flex-grow: 1;
 }
 
 .chartinfo {
-  width: 50%;
+  width: 100%;
   word-wrap: break-word;
   overflow-wrap: break-word;
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   color: white;
@@ -241,18 +237,11 @@ svg {
   font-weight: bold;
 }
 
-
-.btn-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  justify-content: center; 
-}
-
 .btn-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: center;
   margin-top: 30px;
 }
 
@@ -260,10 +249,10 @@ svg {
   line-height: 30px;
   height: 30px;
   text-align: center;
-  width: 150px; 
+  width: 150px;
   cursor: pointer;
   z-index: 1;
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
 }
 
 .btn-three {
@@ -272,7 +261,8 @@ svg {
   position: relative;
 }
 
-.btn-three::before {
+.btn-three::before,
+.btn-three::after {
   content: '';
   position: absolute;
   top: 0;
@@ -280,13 +270,16 @@ svg {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background-color: rgba(255,255,255,0.1);
   transition: all 0.3s;
 }
 
+.btn-three::before {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 .btn-three:hover::before {
-  opacity: 0 ;
-  transform: scale(0.5,0.5);
+  opacity: 0;
+  transform: scale(0.5);
 }
 
 .btn-three::after {
@@ -299,9 +292,22 @@ svg {
   z-index: -1;
   opacity: 1;
   transition: all 0.3s;
-  border: 1px solid rgba(255,255,255,0.5);
-  transform: scale(1,1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  transform: scale(1);
 }
+
+@media screen and (max-width: 768px) {
+  .barchart-left,
+  .barchart-right,
+  .chartinfo,
+  .btn-container {
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
+  }
+}
+
 
 /* --------------------------Reasons Page------------------------------ */
 .reasonbodycore1{
