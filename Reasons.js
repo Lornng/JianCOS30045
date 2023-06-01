@@ -1,8 +1,8 @@
 function init(){
 
-  var w = 1000;
+  var w = 900;
   var h = 600;
-  var padding = 50;
+  var padding = 70;
   var dataset;
 
   // Load data from CSV file and parse it
@@ -161,7 +161,7 @@ var moveTooltip = function(d) {
       .style("opacity", 0)
   }
 
-      // Add circles for GdpG data points
+// Add circles for GdpG data points
 svg.append('g')
 .selectAll(".point-gdpg")
   .data(data)
@@ -210,6 +210,16 @@ svg.append('g')
   .attr("y", h - 40)
   .text("Date");
 
+  // Add button for dividing chart
+
+  d3.select("GdpGbutton").on("click", function() {
+    console.log("Button GdpG clicked");
+
+    activeColumn = "GdpG";
+    updateChart();
+  });
+  
     });
   }
     window.onload = init;
+
