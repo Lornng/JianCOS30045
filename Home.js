@@ -144,7 +144,7 @@ function init(){
                     .style('font-size', '15px')
                     .text(function() {
                         if (d.properties.migrantsNet === '') {
-                            return 'Migration: No Data';
+                            return 'Migration: undefined';
                         } else {
                             return 'Migration: ' + d.properties.migrantsNet;
                         }
