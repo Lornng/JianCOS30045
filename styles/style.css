@@ -205,8 +205,9 @@ h2.parallax {
   padding: 60px 3.5%;
   box-sizing: border-box;
   height: 100%;
-  justify-content: center; 
-  align-items: center; 
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .barchart-top {
@@ -218,9 +219,9 @@ h2.parallax {
 .barchart-bottom {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
-  flex-grow: 1;
+  flex-wrap: wrap;
 }
 
 .chartinfo {
@@ -239,9 +240,9 @@ h2.parallax {
 
 .btn-container {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   margin-top: 30px;
 }
 
@@ -252,7 +253,7 @@ h2.parallax {
   width: 150px;
   cursor: pointer;
   z-index: 1;
-  margin-bottom: 5px;
+  margin: 5px;
 }
 
 .btn-three {
@@ -296,17 +297,6 @@ h2.parallax {
   transform: scale(1);
 }
 
-@media screen and (max-width: 768px) {
-  .barchart-left,
-  .barchart-right,
-  .chartinfo,
-  .btn-container {
-    width: 100%;
-    padding-left: 20px;
-    padding-right: 20px;
-    box-sizing: border-box;
-  }
-}
 
 
 /* --------------------------Reasons Page------------------------------ */
