@@ -300,6 +300,13 @@ h2.parallax {
 
 
 /* --------------------------Reasons Page------------------------------ */
+
+.linechart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .reasonbodycore1{
   background-color: #282d32;
   color: white;
