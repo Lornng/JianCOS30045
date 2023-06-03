@@ -1,6 +1,6 @@
   // Margin, width, and height
   var margin = { top: 20, right: 20, bottom: 50, left: 60 };
-  var width = 1200 - margin.left - margin.right;
+  var width = 900 - margin.left - margin.right;
   var height = 600 - margin.top - margin.bottom;
 
   // Load data from ASIA.csv
@@ -70,10 +70,12 @@ var labels = svg
   })
   .attr("text-anchor", "middle")
   .style("fill", "white") // Set label color to white
+  .style("font-size", "12px") // Adjust the font size as needed
   .text(function(d) {
     return d[activeColumn];
   })
   .style("visibility", "hidden"); // Initially hide the labels
+
 
 // Add mouseover event listener to the bars
 bars.on("mouseover", function(d, i) {
@@ -108,11 +110,16 @@ bars.on("mouseover", function(d, i) {
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis)
       .selectAll("text")
-      .style("fill", "white");
+      .style("fill", "white")
+	  .style("font-size", "12px");
 
     // Add y-axis to the chart
     var yAxis = d3.axisLeft(yScale).tickSizeOuter(0);
-    svg.append("g").call(yAxis).selectAll("text").style("fill", "white");
+    svg.append("g")
+	.call(yAxis)
+	.selectAll("text")
+	.style("fill", "white")
+	.style("font-size", "10px");
 
     // Gridlines
     svg
