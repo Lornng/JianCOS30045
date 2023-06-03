@@ -59,31 +59,28 @@ var lineSchoolEnrollmentR = d3.line()
 
     // Create the SVG element
     var svg = d3.select("#chart")
-      .append
-      ("svg")
+        .append("svg")
         .attr("width", w)
         .attr("height", h);
-
-        // Add the line to the chart
+    // Add the line to the chart
       svg.append("path")
         .datum(dataset)
         .attr("fill", "none")
         .attr("stroke", "#3f88c5")
         .attr("stroke-width", 1.5)
         .attr("d", line);
-        svg.append("path")
-  .datum(dataset)
-  .attr("fill", "none")
-  .attr("stroke", "red") // change the stroke color to differentiate the lines
-  .attr("stroke-width", 1.5)
-  .attr("d", lineUnemploymentR);
-
-svg.append("path")
-  .datum(dataset)
-  .attr("fill", "none")
-  .attr("stroke", "green") // change the stroke color to differentiate the lines
-  .attr("stroke-width", 1.5)
-  .attr("d", lineSchoolEnrollmentR);
+       svg.append("path")
+        .datum(dataset)
+        .attr("fill", "none")
+        .attr("stroke", "red") // change the stroke color to differentiate the lines
+        .attr("stroke-width", 1.5)
+        .attr("d", lineUnemploymentR);
+      svg.append("path")
+        .datum(dataset)
+        .attr("fill", "none")
+        .attr("stroke", "green") // change the stroke color to differentiate the lines
+        .attr("stroke-width", 1.5)
+        .attr("d", lineSchoolEnrollmentR);
 
       // Add the x-axis and y-axis to the chart
       var xAxis = d3.axisBottom()
@@ -107,7 +104,7 @@ svg.append("path")
      
   // -1- Create a tooltip div that is hidden by default:
   var tooltip = d3.select("#chart")
-    .append("div")
+      .append("div")
       .style("opacity", 0)
       .attr("class", "tooltip")
       .style("background-color", "black")
@@ -124,7 +121,7 @@ svg.append("path")
     .style("opacity", 1)
     .html("Year: " + d.date + "<br/>GDP Growth: " + d.GdpG + "%")
     .style("left", (d3.mouse(this)[0]+30) + "px")
-      .style("top", (d3.mouse(this)[1]+30) + "px")
+    .style("top", (d3.mouse(this)[1]+30) + "px")
 }
 
 var showTooltipUnemploymentR = function(event, d) {
@@ -135,7 +132,7 @@ var showTooltipUnemploymentR = function(event, d) {
     .style("opacity", 1)
     .html("Year: " + d.date + "<br/>Unemployment rate: " + d.UnemploymentR + "%")
     .style("left", (d3.mouse(this)[0]+30) + "px")
-      .style("top", (d3.mouse(this)[1]+30) + "px")
+    .style("top", (d3.mouse(this)[1]+30) + "px")
 }
 
 var showTooltipSchoolEnrollmentR = function(event, d) {
@@ -146,7 +143,7 @@ var showTooltipSchoolEnrollmentR = function(event, d) {
     .style("opacity", 1)
     .html("Year: " + d.date + "<br/>School Enrolment: " + d.SchoolEnrollmentR + "%")
     .style("left", (d3.mouse(this)[0]+30) + "px")
-      .style("top", (d3.mouse(this)[1]+30) + "px")
+    .style("top", (d3.mouse(this)[1]+30) + "px")
 }
 
 var moveTooltip = function(d) {
@@ -163,7 +160,7 @@ var moveTooltip = function(d) {
 
 // Add circles for GdpG data points
 svg.append('g')
-.selectAll(".point-gdpg")
+  .selectAll(".point-gdpg")
   .data(data)
   .enter()
   .append("circle")
@@ -173,11 +170,11 @@ svg.append('g')
   .attr("r", 3)
   .on("mouseover", showTooltipGdpG)
   .on("mousemove", moveTooltip )
-    .on("mouseleave", hideTooltip );
+   .on("mouseleave", hideTooltip );
 
 // Add circles for UnemploymentR data points
 svg.append('g')
-.selectAll(".point-unemployment")
+  .selectAll(".point-unemployment")
   .data(data)
   .enter()
   .append("circle")
@@ -187,11 +184,11 @@ svg.append('g')
   .attr("r", 3)
   .on("mouseover", showTooltipUnemploymentR)
   .on("mousemove", moveTooltip )
-    .on("mouseleave", hideTooltip );
+  .on("mouseleave", hideTooltip );
 
 // Add circles for SchoolEnrollmentR data points
 svg.append('g')
-.selectAll(".point-enrollment")
+  .selectAll(".point-enrollment")
   .data(data)
   .enter()
   .append("circle")
@@ -201,9 +198,9 @@ svg.append('g')
   .attr("r", 3)
   .on("mouseover", showTooltipSchoolEnrollmentR)
   .on("mousemove", moveTooltip )
-    .on("mouseleave", hideTooltip );
+  .on("mouseleave", hideTooltip );
 
-        svg.append("text")
+ svg.append("text")
   .attr("class", "x-axis-label")
   .attr("text-anchor", "middle")
   .attr("x", w / 2)
