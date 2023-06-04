@@ -92,6 +92,14 @@ var lineSchoolEnrollmentR = d3.line()
         .attr("transform", "translate(0," + yScale(0) + ")")
         .call(xAxis);
 
+        // name X axis
+        svg.append("text")
+        .attr("class", "x-axis-label")
+        .attr("text-anchor", "right")
+        .attr("x", w / 2)
+        .attr("y", h - 35)
+        .text("Year");
+
       var yAxis = d3.axisLeft()
         .ticks(8)
         .scale(yScale);
@@ -100,6 +108,15 @@ var lineSchoolEnrollmentR = d3.line()
         .attr("class", "y-axis")
         .attr("transform", "translate(" + padding + ",0)")
         .call(yAxis);
+        
+      // name Y axis
+      svg.append("text")
+        .attr("class", "y-axis-label")
+        .attr("text-anchor", "middle")
+        .attr("transform", "rotate(-90)")
+        .attr("x", -h / 2)
+        .attr("y", padding - 35)
+        .text("Percentage");
 
      
   // -1- Create a tooltip div that is hidden by default:
@@ -219,4 +236,6 @@ svg.append('g')
     });
   }
     window.onload = init;
+
+
 
