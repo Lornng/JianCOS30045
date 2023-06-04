@@ -220,13 +220,53 @@ svg.append('g')
   .on("mouseleave", hideTooltip );
 
   // Add button for dividing chart
-  d3.select("GdpGbutton").on("click", function() {
-    console.log("Button GdpG clicked");
+  // d3.select("GdpGbutton").on("click", function() {
+  //   console.log("Button GdpG clicked");
 
-    activeColumn = "GdpG";
-    updateChart();
-  });
-  
+  //   activeColumn = "GdpG";
+  //   updateChart();
+  // });
+
+  //GDP legend
+  svg.append("rect")
+      .attr("x", 60)
+      .attr("y",h-20)
+      .attr("rx", 5)
+      .attr("width", 20)
+      .attr("height", 20)
+      .attr("fill", "Blue")
+  svg.append("text")
+      .attr("x",85)
+      .attr("y", h-4)
+      .text("GDP rate");
+
+  //Unemployment legend
+  svg.append("rect")
+      .attr("x", 260)
+      .attr("y",h-20)
+      .attr("rx", 5)
+      .attr("width", 20)
+      .attr("height", 20)
+      .attr("fill", "red")
+  svg.append("text")
+      .attr("x",285)
+      .attr("y", h-4)
+      .text("Unemployment rate");
+
+  //School enrolment legend
+  svg.append("rect")
+      .attr("x", 560)
+      .attr("y",h-20)
+      .attr("rx", 5)
+      .attr("width", 20)
+      .attr("height", 20)
+      .attr("fill", "green")
+  svg.append("text")
+      .attr("x",585)
+      .attr("y", h-4)
+      .text("School enrolment rate");
+
+
     });
   }
     window.onload = init;
