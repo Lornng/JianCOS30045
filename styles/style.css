@@ -306,6 +306,8 @@ h2.parallax {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0;
+  margin: 0;
 }
 
 .reasonbodycore1{
@@ -353,6 +355,7 @@ h2.parallax {
 .chartInstructions{
   font-size: 1.4em;
   color: white;
+  margin: 0;
 }
 
 .chartInstructions h3 {
