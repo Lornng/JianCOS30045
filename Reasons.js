@@ -219,13 +219,6 @@ svg.append('g')
   .on("mousemove", moveTooltip )
   .on("mouseleave", hideTooltip );
 
- svg.append("text")
-  .attr("class", "x-axis-label")
-  .attr("text-anchor", "middle")
-  .attr("x", w / 2)
-  .attr("y", h - 40)
-  .text("Date");
-
   // Add button for dividing chart
   d3.select("GdpGbutton").on("click", function() {
     console.log("Button GdpG clicked");
