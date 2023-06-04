@@ -40,21 +40,21 @@ function init(){
           return yScale(d.GdpG);
         });
 
-        var lineUnemploymentR = d3.line()
-  .x(function(d) {
-    return xScale(d.date);
-  })
-  .y(function(d) {
-    return yScale(d.UnemploymentR);
-  });
+      var lineUnemploymentR = d3.line()
+        .x(function(d) {
+          return xScale(d.date);
+        })
+        .y(function(d) {
+          return yScale(d.UnemploymentR);
+        });
 
-var lineSchoolEnrollmentR = d3.line()
-  .x(function(d) {
-    return xScale(d.date);
-  })
-  .y(function(d) {
-    return yScale(d.SchoolEnrollmentR);
-  });
+      var lineSchoolEnrollmentR = d3.line()
+        .x(function(d) {
+          return xScale(d.date);
+        })
+        .y(function(d) {
+          return yScale(d.SchoolEnrollmentR);
+        });
 
 
     // Create the SVG element
@@ -62,6 +62,7 @@ var lineSchoolEnrollmentR = d3.line()
         .append("svg")
         .attr("width", w)
         .attr("height", h);
+
     // Add the line to the chart
       svg.append("path")
         .datum(dataset)
@@ -69,12 +70,14 @@ var lineSchoolEnrollmentR = d3.line()
         .attr("stroke", "#3f88c5")
         .attr("stroke-width", 1.5)
         .attr("d", line);
-       svg.append("path")
+
+      svg.append("path")
         .datum(dataset)
         .attr("fill", "none")
         .attr("stroke", "red") // change the stroke color to differentiate the lines
         .attr("stroke-width", 1.5)
         .attr("d", lineUnemploymentR);
+
       svg.append("path")
         .datum(dataset)
         .attr("fill", "none")
@@ -93,7 +96,7 @@ var lineSchoolEnrollmentR = d3.line()
         .call(xAxis);
 
         // name X axis
-        svg.append("text")
+      svg.append("text")
         .attr("class", "x-axis-label")
         .attr("text-anchor", "right")
         .attr("x", w / 2)
@@ -117,31 +120,30 @@ var lineSchoolEnrollmentR = d3.line()
         .attr("x", -h / 2)
         .attr("y", padding - 35)
         .text("Percentage");
-
-     
-  // -1- Create a tooltip div that is hidden by default:
-  var tooltip = d3.select("#chart")
-      .append("div")
-      .style("opacity", 0)
-      .attr("class", "tooltip")
-      .style("background-color", "black")
-      .style("border-radius", "5px")
-      .style("padding", "10px")
-      .style("color", "white");
+ 
+      // -1- Create a tooltip div that is hidden by default:
+      var tooltip = d3.select("#chart")
+        .append("div")
+        .style("opacity", 0)
+        .attr("class", "tooltip")
+        .style("background-color", "black")
+        .style("border-radius", "5px")
+        .style("padding", "10px")
+        .style("color", "white");
 
   // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
-  var showTooltipGdpG = function(event, d) {
-  tooltip
-    .transition()
-    .duration(200);
-  tooltip
-    .style("opacity", 1)
-    .html("Year: " + d.date + "<br/>GDP Growth: " + d.GdpG + "%")
-    .style("left", (d3.mouse(this)[0]+30) + "px")
-    .style("top", (d3.mouse(this)[1]+30) + "px")
-}
+      var showTooltipGdpG = function(event, d) {
+        tooltip
+        .transition()
+        .duration(200);
+        tooltip
+        .style("opacity", 1)
+        .html("Year: " + d.date + "<br/>GDP Growth: " + d.GdpG + "%")
+        .style("left", (d3.mouse(this)[0]+30) + "px")
+        .style("top", (d3.mouse(this)[1]+30) + "px")
+        }
 
-var showTooltipUnemploymentR = function(event, d) {
+      var showTooltipUnemploymentR = function(event, d) {
   tooltip
     .transition()
     .duration(200);
@@ -150,30 +152,30 @@ var showTooltipUnemploymentR = function(event, d) {
     .html("Year: " + d.date + "<br/>Unemployment rate: " + d.UnemploymentR + "%")
     .style("left", (d3.mouse(this)[0]+30) + "px")
     .style("top", (d3.mouse(this)[1]+30) + "px")
-}
+        }
 
-var showTooltipSchoolEnrollmentR = function(event, d) {
-  tooltip
-    .transition()
-    .duration(200);
-  tooltip
-    .style("opacity", 1)
-    .html("Year: " + d.date + "<br/>School Enrolment: " + d.SchoolEnrollmentR + "%")
-    .style("left", (d3.mouse(this)[0]+30) + "px")
-    .style("top", (d3.mouse(this)[1]+30) + "px")
-}
+      var showTooltipSchoolEnrollmentR = function(event, d) {
+        tooltip
+        .transition()
+        .duration(200);
+        tooltip
+        .style("opacity", 1)
+        .html("Year: " + d.date + "<br/>School Enrolment: " + d.SchoolEnrollmentR + "%")
+        .style("left", (d3.mouse(this)[0]+30) + "px")
+        .style("top", (d3.mouse(this)[1]+30) + "px")
+        }
 
-var moveTooltip = function(d) {
-    tooltip
-      .style("left", (d3.mouse(this)[0]+30) + "px")
-      .style("top", (d3.mouse(this)[1]+30) + "px")
-  }
-  var hideTooltip = function(d) {
-    tooltip
-      .transition()
-      .duration(200)
-      .style("opacity", 0)
-  }
+      var moveTooltip = function(d) {
+        tooltip
+        .style("left", (d3.mouse(this)[0]+30) + "px")
+        .style("top", (d3.mouse(this)[1]+30) + "px")
+        }
+      var hideTooltip = function(d) {
+        tooltip
+        .transition()
+        .duration(200)
+        .style("opacity", 0)
+        }
 
 // Add circles for GdpG data points
 svg.append('g')
@@ -187,7 +189,7 @@ svg.append('g')
   .attr("r", 3)
   .on("mouseover", showTooltipGdpG)
   .on("mousemove", moveTooltip )
-   .on("mouseleave", hideTooltip );
+  .on("mouseleave", hideTooltip );
 
 // Add circles for UnemploymentR data points
 svg.append('g')
@@ -225,7 +227,6 @@ svg.append('g')
   .text("Date");
 
   // Add button for dividing chart
-
   d3.select("GdpGbutton").on("click", function() {
     console.log("Button GdpG clicked");
 
@@ -236,6 +237,4 @@ svg.append('g')
     });
   }
     window.onload = init;
-
-
 
