@@ -1,4 +1,4 @@
-# COS30045
+# COS30045 Data Visualisation
 Using JavaScript intergrated with HTML make a website which talk about the world population issue <br>
 Made a world map that retrieve population, country name, etc <br>
 Distinguish the coutry into different level <br>
